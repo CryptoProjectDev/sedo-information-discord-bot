@@ -2,7 +2,7 @@
 API for Enclaves distributed exchange (enclaves.io)
 
 example token entry:
-    {'addr': '0xb6ed7644c69416d67b522e20bc294a9a9b405b31',
+    {'addr': '0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f',
      'amountEther': '22230538924500000',
      'amountToken': '3293413174',
      'change': '-0.13460428979858716137',
@@ -33,7 +33,7 @@ class EnclavesAPI():
         self._WEBSOCKET_URL = "ws://app.enclaves.io:80/socket.io/?EIO=3&transport=websocket";
 
         if currency_symbol == "0xBTC":
-            self._CONTRACT_ADDRESS = '0xb6ed7644c69416d67b522e20bc294a9a9b405b31'
+            self._CONTRACT_ADDRESS = '0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f'
         else:
             raise RuntimeError("Unknown currency_symbol {}".format(currency_symbol))
 

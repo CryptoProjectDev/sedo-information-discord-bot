@@ -48,7 +48,7 @@ def cmd_help():
             + "price commands: {}\n".format("  ".join("`{}`".format(c[1][0]) for c in random.Random(datetime.date.today().strftime("%j")).sample(config.EXPENSIVE_STUFF, 5)))
             #+ "bot commands: `uptime ping` "
             + "token info: `supply`  `difficulty`  `hashrate`  `blocktime`  `holders`  `halvening`  `burned`\n"
-            + "quick link commands: `SEDO` `whitepaper`  `website`  `ann`  `contract`  `stats`  `miners`  `merch`\n"
+            + "quick link commands: `whitepaper`  `website`  `ann`  `contract`  `stats`  `miners`  `merch`\n"
             + "tools: `convert`  `income`  `mine`")
 
 CmdDef = collections.namedtuple('CmdDef', ['keywords', 'response'])
@@ -57,36 +57,6 @@ _GLOBAL_COMMANDS = [
     CmdDef(
         ['help', 'commands', 'bot'],
         cmd_help),
-    CmdDef(
-        ["sedo","S.E.D.O.", "info", "iamnoob", "i am noob", "givemeall", "give me all", "?", "pleasehelp", "please help"],
-        ("SEDO Website: <http://sedocoin.org/>\n"
-	 "SEDO Whitepaper: <http://sedocoin.org/download/sedo_wp_en.pdf>\n"
-	 "[ANN] SEDO: <https://bitcointalk.org/index.php?topic=5061527\n"
-	 "SEDO Contract: 0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f [<https://bit.ly/2KdcDo6>]\n"
-	 "SEDO Stats: <http://199.247.0.146:5000/> (GitHub: <https://github.com/CryptoProjectDev/SEDO-Stats>)\n"
-	 "SEDOminer: <https://github.com/CryptoProjectDev/SedoMiner/releases>\n"
-	 "Azlehria: <https://github.com/azlehria/0xbitcoin-gpuminer/releases>\n"
-         "COSMiC: <https://bitbucket.org/LieutenantTofu/cosmic-v3/downloads/>\n" 
-         "MVIS-Tokenminer: <https://github.com/mining-visualizer/MVis-tokenminer/releases>\n"
-         "SoliditySHA3Miner: <https://github.com/lwYeo/SoliditySHA3Miner/releases>")),
-    CmdDef(
-        ["S.E.D.O.", "info", "iamnoob", "i am noob", "givemeall", "give me all", "?", "pleasehelp", "please help"],
-        ("SEDO Website: <http://sedocoin.org/>\n"
-	 "SEDO Whitepaper: <http://sedocoin.org/download/sedo_wp_en.pdf>\n"
-	 "[ANN] SEDO: <https://bitcointalk.org/index.php?topic=5061527\n"
-	 "SEDO Contract: 0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f [<https://bit.ly/2KdcDo6>]\n"
-	 "SEDO Stats: <http://199.247.0.146:5000/> (GitHub: <https://github.com/CryptoProjectDev/SEDO-Stats>)\n"
-	 "SEDOminer: <https://github.com/CryptoProjectDev/SedoMiner/releases>\n"
-	 "Azlehria: <https://github.com/azlehria/0xbitcoin-gpuminer/releases>\n"
-         "COSMiC: <https://bitbucket.org/LieutenantTofu/cosmic-v3/downloads/>\n" 
-         "MVIS-Tokenminer: <https://github.com/mining-visualizer/MVis-tokenminer/releases>\n"
-         "SoliditySHA3Miner: <https://github.com/lwYeo/SoliditySHA3Miner/releases>")),
-    CmdDef(
-        ['bounty'],
-        "Bounty and other rewards will be anounced later. No plans for the near future."),
-    CmdDef(
-        ['beer'],
-        "Drunk beer, my friend! Crypto is only virtual thing ! :D <https://en.wikipedia.org/wiki/Beer>"),
     CmdDef(
         ['white paper'],
         "SEDO Whitepaper: <http://sedocoin.org/download/sedo_wp_en.pdf>"),
@@ -109,9 +79,6 @@ _GLOBAL_COMMANDS = [
          "COSMiC: <https://bitbucket.org/LieutenantTofu/cosmic-v3/downloads/>\n" 
          "MVIS-Tokenminer: <https://github.com/mining-visualizer/MVis-tokenminer/releases>\n"
          "SoliditySHA3Miner: <https://github.com/lwYeo/SoliditySHA3Miner/releases>")),
-    CmdDef(
-        ["SEDOMiner", "sedo miner"],
-        "SEDOminer: <https://github.com/CryptoProjectDev/SedoMiner/releases>"),
     CmdDef(
         ["mvis", "mining visualizer", "mvis tokenminer"],
         "MVIS-Tokenminer: <https://github.com/mining-visualizer/MVis-tokenminer/releases>"),
@@ -1314,8 +1281,19 @@ def main():
         os.makedirs(os.path.split(args.log_location)[0])
     setup_logging(args.log_location)
 
-    apis = MultiApiManager([])
-
+    apis = MultiApiManager(
+    [
+'''
+        CoinMarketCapAPI(config.CURRENCY),
+        CoinMarketCapAPI('ETH'),
+        CoinMarketCapAPI('BTC'),
+        EnclavesAPI(config.CURRENCY),
+        ForkDeltaAPI(config.CURRENCY),
+        IDEXAPI(config.CURRENCY),
+        MercatoxAPI(config.CURRENCY),
+        EthexAPI(config.CURRENCY),
+'''
+    ])
     token = MineableTokenInfo(config.TOKEN_ETH_ADDRESS)
     storage = Storage(config.DATA_FOLDER)
 

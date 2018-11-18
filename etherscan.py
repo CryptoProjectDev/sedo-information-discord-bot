@@ -101,7 +101,7 @@ def _generate_holders_chart(holders, total_supply, output_filename):
         wedge.set_edgecolor('white')
         wedge.set_linewidth(0.04)
     
-    fmt_str = "0xBitcoin Distribution as of {}"
+    fmt_str = "SEDO Distribution as of {}"
     ax.set_title(fmt_str.format(datetime.datetime.now(tz=datetime.timezone.utc).strftime("%c UTC")));
 
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
@@ -121,6 +121,7 @@ def get_page_of_token_holders(address, etherscan_page, timeout=10.0):
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
         }
     )
+    logging.info(url_template.format(address, etherscan_page))
     response = urlopen(req, timeout=timeout)
     page_contents = response.read()
     soup = BeautifulSoup(page_contents, 'html.parser')
@@ -140,7 +141,7 @@ def get_page_of_token_holders(address, etherscan_page, timeout=10.0):
 
 def _get_top_1000_token_holders(address, timeout=10.0):
     holders = []
-    for page_num in range(20):
+    for page_num in range(2):
         page_num = page_num+1  # page is one-indexed
         holders += get_page_of_token_holders(address, page_num, timeout=timeout)
     return holders
@@ -153,7 +154,7 @@ def main():
 
     return
 
-    holders = _get_top_1000_token_holders("0xB6eD7644C69416d67B522e20bC294A9a9B405B31")
+    holders = _get_top_1000_token_holders("0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f")
     logging.info('first holder: {}'.format(holders[0]))
     logging.info('1000th holder: {}'.format(holders[999]))
 

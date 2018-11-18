@@ -77,7 +77,7 @@ class TestMineableTokenInfo(unittest.TestCase):
     def setUp(self):
         from mineable_token_info import MineableTokenInfo
         from web3 import Web3
-        self.m = MineableTokenInfo("0xB6eD7644C69416d67B522e20bC294A9a9B405B31")
+        self.m = MineableTokenInfo("0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f")
         self.m.update()
 
 

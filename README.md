@@ -1,5 +1,10 @@
-# 0xbtc-discord-price-bot
-bot to monitor/post price etc to the 0xbtc discord server
+# SEDO-information-discord-price-bot
+
+![SEDO_small](http://sedocoin.org/wp-content/uploads/2018/10/logo_blue_240.png)
+
+Bot to monitor/post price etc to the SEDO discord server
+
+Forked from the https://github.com/0x1d00ffff/0xbtc-discord-price-bot
 
 Installation:
  - Clone this repository
@@ -44,28 +49,3 @@ Bugs:
  - if a command string matches two commands it will run both and return
    the response from whatever command runs last.
 
-Todo:
- - update from async to rewrite branch of discord.py [link](https://github.com/TheTrain2000/async2rewrite)
- - rename 'api' to 'exchange'; wrap all apis (exchanges, token, etc) in a new apis class
- - make exchanges module
- - generalize the command interface
- - typos/new commands
-   - !binance (to show current listing price in usd)
-   - !orderbooks mercatox
- - Need a new 'Pairing' class to handle pairings in a more generic way. This
-   will allow easier integration of BTC pairings (ie mercatox)
- - volume_eth and volume_usd are not strictly defined - sometimes it means total
-   volume across all pairs (converted to eth), sometimes it means volume in eth
-   only and volume_btc means volume in btc only.
- - ATH announcements
- - 24h high/low/average
- - ascii chart?
- - enable hotbit?
- - new exchanges
-   - tokenjar [link](https://tokenjar.io/0xbtc)
-   - tokenstore [link](https://token.store/trade/0xBTC)
-   - payfair [link](https://payfair.io/?coin=0XBTC&tradeType=sell&currency=USD)
-   - instex [link](https://app.instex.io/0xBTC-WETH)
-   - cryptobridge (not yet)
-   - ddex.io
-   - Rootrex

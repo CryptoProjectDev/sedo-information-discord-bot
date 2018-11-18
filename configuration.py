@@ -1,8 +1,8 @@
-# 0xbtc-discord-price-bot configuration file
+# SEDO-discord-price-bot configuration file
 #
 
-CURRENCY = '0xBTC'
-TOKEN_ETH_ADDRESS = "0xB6eD7644C69416d67B522e20bC294A9a9B405B31"
+CURRENCY = 'SEDO'
+TOKEN_ETH_ADDRESS = "0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f"
 
 UPDATE_RATE = 120  # how often to update all APIs (in seconds)
 TOKEN_HOLDER_UPDATE_RATE_HOURS = 6  # how often to update the token holder chart (in hours)
@@ -11,11 +11,11 @@ COMMAND_CHARACTER = '!'  # what character should prepend all commands
 DATA_FOLDER = './databases/'  # folder to store persistent data (all-time high prices, etc)
 
 # URL for your Ethereum provider. Get one for free at infura.io
-ETHEREUM_NODE_URL = "https://mainnet.infura.io/MnFOXCPE2oOhWpOCyEBT"
+ETHEREUM_NODE_URL = "https://mainnet.infura.io/f12d6274997840158b99b418f0ed8ec1"
 
 # Channels listed here will be ignored by the bot for all but 'global' commands
 BLACKLISTED_CHANNEL_IDS = [
-    # 0xbitcoin server
+    # SEDO server
     '454156227446964226',  # announcements
     '417834372864147456',  # articles
     '413927301932253185',  # useful-links
@@ -35,7 +35,7 @@ BLACKLISTED_CHANNEL_IDS = [
 # List of users who should be allowed to run privileged commands (like !setath)
 PRIVILEGED_USER_IDS = [
     '0',                   # testing user ID
-    '400860916876574731',  # 0x1d00ffff
+    '513468214341140530',  # SEDO-DEV
 ]
 
 # List of object prices. This is used by two classes of bot commands:

@@ -51,7 +51,7 @@ class MultiApiManager():
                 return a.short_url
         return default_url
 
-    def price_eth(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def price_eth(self, currency_symbol='SEDO', api_name='aggregate'):
         result = WeightedAverage()
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -64,7 +64,7 @@ class MultiApiManager():
                 result.add(a.price_eth, a.volume_eth)
         return result.average()
 
-    def price_usd(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def price_usd(self, currency_symbol='SEDO', api_name='aggregate'):
         result = WeightedAverage()
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -77,7 +77,7 @@ class MultiApiManager():
                 result.add(a.price_usd, a.volume_eth)
         return result.average()
 
-    def volume_usd(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def volume_usd(self, currency_symbol='SEDO', api_name='aggregate'):
         result = 0
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -88,7 +88,7 @@ class MultiApiManager():
                 result += a.volume_usd
         return result
 
-    def volume_eth(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def volume_eth(self, currency_symbol='SEDO', api_name='aggregate'):
         result = 0
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -99,7 +99,7 @@ class MultiApiManager():
                 result += a.volume_eth
         return result
 
-    def volume_btc(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def volume_btc(self, currency_symbol='SEDO', api_name='aggregate'):
         result = 0
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -110,7 +110,7 @@ class MultiApiManager():
                 result += a.volume_btc
         return result
 
-    def change_24h(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def change_24h(self, currency_symbol='SEDO', api_name='aggregate'):
         result = WeightedAverage()
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -121,7 +121,7 @@ class MultiApiManager():
                 result.add(a.change_24h, a.volume_eth)
         return result.average()
 
-    def rank(self, currency_symbol='0xBTC', api_name='aggregate'):
+    def rank(self, currency_symbol='SEDO', api_name='aggregate'):
         result = None
         for a in self.alive_apis:
             if a.currency_symbol != currency_symbol:
@@ -176,10 +176,10 @@ if __name__ == "__main__":
     from mercatox import MercatoxAPI
 
     apis = [
-        EnclavesAPI('0xBTC'), 
-        ForkDeltaAPI('0xBTC'),
-        MercatoxAPI('0xBTC'),
-        CoinMarketCapAPI('BTC'),
+        EnclavesAPI('SEDO'), 
+        ForkDeltaAPI('SEDO'),
+        MercatoxAPI('SEDO'),
+        CoinMarketCapAPI('SEDO'),
         CoinMarketCapAPI('ETH')
     ]
 
@@ -196,12 +196,12 @@ if __name__ == "__main__":
     print("m.eth_price_usd()", m.eth_price_usd())
     print("m.btc_price_usd()", m.btc_price_usd())
 
-    print("m.price_eth('0xBTC')", m.price_eth('0xBTC'))
-    print("m.price_usd('0xBTC')", m.price_usd('0xBTC'))
-    print("m.volume_usd('0xBTC')", m.volume_usd('0xBTC'))
-    print("m.volume_eth('0xBTC')", m.volume_eth('0xBTC'))
-    print("m.volume_btc('0xBTC')", m.volume_btc('0xBTC'))
-    print("m.change_24h('0xBTC')", m.change_24h('0xBTC'))
+    print("m.price_eth('SEDO')", m.price_eth('SEDO'))
+    print("m.price_usd('SEDO')", m.price_usd('SEDO'))
+    print("m.volume_usd('SEDO')", m.volume_usd('SEDO'))
+    print("m.volume_eth('SEDO')", m.volume_eth('SEDO'))
+    print("m.volume_btc('SEDO')", m.volume_btc('SEDO'))
+    print("m.change_24h('SEDO')", m.change_24h('SEDO'))
 
-    print("m.change_24h('0xBTC', api_name='Mercatox')",      m.change_24h('0xBTC', api_name='Mercatox'))
+    print("m.change_24h('SEDO', api_name='Mercatox')",      m.change_24h('SEDO', api_name='Mercatox'))
 

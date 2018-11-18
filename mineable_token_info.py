@@ -1,15 +1,15 @@
 #
 #
 # 'total supply' is at index 5 (0x5)
-# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0x5", "latest"]'
+# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0x5", "latest"]'
 # 'last difficulty period started' is at index 6 (0x6)
-# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0x6", "latest"]'
+# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0x6", "latest"]'
 # 'mining target' is at index 11 (0xB)
-# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0xB", "latest"]'
+# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0xB", "latest"]'
 # 'challenge number' is at index 12 (0xC)
-# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0xC", "latest"]'
+# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0xC", "latest"]'
 # 'tokens minted' is at index 20 (0x14)
-# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0x14", "latest"]'
+# curl -G https://api.infura.io/v1/jsonrpc/mainnet/eth_getStorageAt --data-urlencode 'params=["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0x14", "latest"]'
 #
 #
 import logging
@@ -47,8 +47,8 @@ class MineableTokenInfo():
 
         self.address = token_address
 
-        if self.address == "0xB6eD7644C69416d67B522e20bC294A9a9B405B31":
-            self.SYMBOL = "0xBTC"
+        if self.address == "0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f":
+            self.SYMBOL = "SEDO"
             self.MIN_TARGET = 2**16
             self.MAX_TARGET = Web3.toInt(hexstr="0x40000000000000000000000000000000000000000000000000000000000")
             self._BLOCKS_PER_READJUSTMENT = 1024
@@ -84,7 +84,7 @@ class MineableTokenInfo():
             pass
 
         try:
-            # '["0xb6ed7644c69416d67b522e20bc294a9a9b405b31", "0x5", "latest"]'
+            # '["0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f", "0x5", "latest"]'
 
             infura_parameters = '["{}", "{}", "latest"]'.format(self.address, 
                                                                 index)
@@ -272,7 +272,7 @@ if __name__ == "__main__":
 
     # digest = Web3.sha3(Web3.toBytes(hexstr="3b0ec88154c8aecbc7876f50d8915ef7cd6112a604cad4f86f549d5b9eed369a540d752a388b4fc1c9deeb1cd3716a2b7875d8a603000000000000000440a2682657259316000000e87905d96943030a90de3e74"))
 
-    m = MineableTokenInfo('0xB6eD7644C69416d67B522e20bC294A9a9B405B31')
+    m = MineableTokenInfo('0x0F00f1696218EaeFa2D2330Df3D6D1f94813b38f')
 
     m.update()
 
