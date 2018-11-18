@@ -7,6 +7,9 @@ Bot to monitor/post price etc to the SEDO discord server
 Forked from the https://github.com/0x1d00ffff/0xbtc-discord-price-bot
 
 Installation:
+
+! REQUEIRED python 3.6.x. Dont worked in python 3.7.x
+
  - Clone this repository
  - Install python 3.6+
    - For debian 9 users: Debian 9 repositories only go up to python 3.5, so to
