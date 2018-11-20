@@ -6,6 +6,11 @@ Bot to monitor/post price etc to the SEDO discord server
 
 Forked from the https://github.com/0x1d00ffff/0xbtc-discord-price-bot
 
+***************
+2018-11-21
+- added yobit price support
+***************
+
 Installation:
 
 ! REQUEIRED python 3.6.x. Dont worked in python 3.7.x

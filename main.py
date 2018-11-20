@@ -30,6 +30,7 @@ from forkdelta import ForkDeltaAPI
 from mercatox import MercatoxAPI
 from idex import IDEXAPI
 from ethex import EthexAPI
+from yobit import YobitAPI
 from multi_api_manager import MultiApiManager
 
 from mineable_token_info import MineableTokenInfo
@@ -275,14 +276,14 @@ def cmd_compare_price_vs(item_name="lambo", item_price=200000):
 
 def cmd_price(source='aggregate'):
     if (apis.last_updated_time(api_name=source) == 0):
-        return "not sure yet... waiting on my APIs :sob: [<{}>]".format(apis.short_url(api_name=source))
+        return "not sure yet... waiting on my APIs [lut==0] :sob: [<{}>]".format(apis.short_url(api_name=source))
     
     token_price = apis.price_eth(config.CURRENCY, api_name=source) * apis.eth_price_usd()
     eth_price_on_this_exchange = float(apis.eth_price_usd(api_name=source))
 
     # Enclaves usually fails this way
     if token_price == 0:
-        return "not sure yet... waiting on my APIs :sob: [<{}>]".format(apis.short_url(api_name=source))
+        return "not sure yet... waiting on my APIs [tp==0] :sob: [<{}>]".format(apis.short_url(api_name=source))
 
     percent_change_str = ""
     if apis.change_24h(config.CURRENCY, api_name=source) == None:
@@ -871,7 +872,7 @@ async def background_update():
     while not client.is_closed:
         try:
             logging.warning('API update skipped')
-            #apis.update()  #API UPDATE 
+            apis.update()  #API UPDATE 
         except RuntimeError as e:
             logging.warning('Failed to update exchange APIs: {}'.format(str(e)))
         except:
@@ -971,6 +972,9 @@ async def handle_trading_command(command_str, author_id, raw_message):
                 'meractox', 
                 'mecratox'], exhaustive_search=True, require_cmd_char=False):
             msg = cmd_price(source="Mercatox")
+        elif string_contains_any(command_str, [
+                'yobit'], exhaustive_search=True, require_cmd_char=False):
+            msg = cmd_price(source="Yobit")
         elif string_contains_any(command_str, [
                 'idex'], exhaustive_search=True, require_cmd_char=False):
             msg = cmd_price(source="IDEX")
@@ -1314,7 +1318,9 @@ def main():
         os.makedirs(os.path.split(args.log_location)[0])
     setup_logging(args.log_location)
 
-    apis = MultiApiManager([])
+    apis = MultiApiManager([
+        YobitAPI('SEDO')
+    ])
 
     token = MineableTokenInfo(config.TOKEN_ETH_ADDRESS)
     storage = Storage(config.DATA_FOLDER)
