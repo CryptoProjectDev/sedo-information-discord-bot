@@ -20,7 +20,7 @@ class YobitAPI():
         self._SERVER_URL = "https://yobit.io/api/3/ticker"
         self.currency_symbol = currency_symbol
         self.api_name = "Yobit"
-        self.short_url = "https://bit.ly/2R0FHSf"
+        self.short_url = "https://bit.ly/2Kpk77B"
         self.last_updated_time = 0
 
         self.price_eth = None

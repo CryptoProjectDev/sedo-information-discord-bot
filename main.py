@@ -766,11 +766,11 @@ def convert(amount, src, dest):
 
     token_price_usd = apis.price_eth(config.CURRENCY) * apis.eth_price_usd()
 
-    if src in ['SEDO', 'SEDO Pow Token', 'S.E.D.O.']:
+    if src in ['sedo', 'sedo pow token', 's.e.d.o.']:
         usd_value = token_price_usd * amount
-    elif src in ['mSEDO', 'milliSEDO']:
+    elif src in ['msedo', 'milliSEDO']:
         usd_value = token_price_usd * amount / 1000.0
-    elif src in ['SEDOsatoshis', 'SEDOsatoshi', 'satoastis', 'satoasti', 'crumbs', 'crumb']:
+    elif src in ['sedosatoshis', 'sedosatoshi', 'satoastis', 'satoasti', 'crumbs', 'crumb']:
         usd_value = token_price_usd * amount / 10**8
     elif src in ['eth', 'ethereum', 'ether']:
         usd_value = apis.eth_price_usd() * amount
@@ -796,11 +796,11 @@ def convert(amount, src, dest):
     if usd_value == None:
         return "Bad currency ({}). SEDO, SEDOsatoshi, eth, wei, btc, mbtc, satoshis, and usd are supported.".format(src)
 
-    if dest in ['SEDO', 'SEDO Pow Token']:
+    if dest in ['sedo', 'sedo pow token']:
         result = usd_value / token_price_usd
-    elif dest in ['mSEDO', 'milliSEDO']:
+    elif dest in ['msedo', 'millisedo']:
         result = 1000.0 * usd_value / token_price_usd
-    elif dest in ['SEDOsatoshis', 'SEDOsatoshi', 'satoastis', 'satoasti', 'crumbs', 'crumb']:
+    elif dest in ['sedosatoshis', 'sedosatoshi', 'satoastis', 'satoasti', 'crumbs', 'crumb']:
         result = 10**8 * usd_value / token_price_usd
     elif dest in ['eth', 'ethereum', 'ether']:
         result = usd_value / apis.eth_price_usd()

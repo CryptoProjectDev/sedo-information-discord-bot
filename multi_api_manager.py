@@ -42,7 +42,7 @@ class MultiApiManager():
         return list(set(all_names))
 
     def short_url(self, api_name='aggregate'):
-        default_url = "http://bitly.com/2LvDE6u"
+        default_url = "https://bit.ly/2Kpk77B"
         if api_name == "aggregate":
             return default_url
 
